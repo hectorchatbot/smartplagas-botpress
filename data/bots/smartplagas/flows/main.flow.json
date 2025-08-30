@@ -1,0 +1,55 @@
+{
+  "version": "0.0.1",
+  "catchAll": {
+    "onReceive": [],
+    "next": []
+  },
+  "startNode": "Aclaratoria_Demo",
+  "nodes": [
+    {
+      "id": "entry",
+      "name": "Aclaratoria_Demo",
+      "next": [
+        {
+          "condition": "true",
+          "node": "Standard1"
+        }
+      ],
+      "onEnter": [
+        "say #!builtin_text-_IyUu_"
+      ],
+      "onReceive": null
+    },
+    {
+      "id": "6d06a266c9",
+      "name": "Standard1",
+      "next": [
+        {
+          "condition": "true",
+          "node": "Standard2"
+        }
+      ],
+      "onEnter": [
+        "say #!builtin_text-WSCMgo"
+      ],
+      "onReceive": null,
+      "type": "standard"
+    },
+    {
+      "id": "e489b36fca",
+      "name": "Standard2",
+      "next": [
+        {
+          "condition": "true",
+          "conditionType": "always",
+          "node": "END"
+        }
+      ],
+      "onEnter": [
+        "say #!builtin_text-9NkCYm"
+      ],
+      "onReceive": null,
+      "type": "standard"
+    }
+  ]
+}

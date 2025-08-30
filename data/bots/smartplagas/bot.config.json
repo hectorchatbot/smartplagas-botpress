@@ -1,0 +1,57 @@
+{
+  "locked": false,
+  "disabled": false,
+  "private": false,
+  "details": {
+    "website": "https://smartplagas.cl",
+    "phoneNumber": "+56995300790",
+    "emailAddress": "contacto@smartplagas.cl",
+    "termsConditions": "https://smartplagas.cl/terminos",
+    "privacyPolicy": "https://smartplagas.cl/privacidad",
+    "avatarUrl": "/api/v1/bots/smartplagas/media/r41xwjqd3hvi8mov6f3q-smartplagas-logo.png",
+    "coverPictureUrl": "/api/v1/bots/smartplagas/media/xa5kfdk9gv029zum52sf-Sin%20t%C3%ADtulo%20(700%20x%20300%20px)%20(700%20x%20300%20px)%20(1).png"
+  },
+  "$schema": "../../bot.config.schema.json",
+  "description": "Chatbot demo para Smart Plagas\n",
+  "active": true,
+  "version": "12.30.6",
+  "author": "Botpress, Inc.",
+  "license": "AGPL-3.0",
+  "imports": {
+    "modules": [],
+    "incomingMiddleware": [],
+    "outgoingMiddleware": [],
+    "contentTypes": [
+      "builtin_action-button",
+      "builtin_audio",
+      "builtin_card",
+      "builtin_carousel",
+      "dropdown",
+      "builtin_file",
+      "builtin_image",
+      "builtin_location",
+      "builtin_single-choice",
+      "builtin_text",
+      "builtin_video"
+    ]
+  },
+  "dialog": {
+    "timeoutInterval": "5m"
+  },
+  "logs": {
+    "expiration": "1 week"
+  },
+  "defaultLanguage": "es",
+  "languages": [
+    "es"
+  ],
+  "id": "smartplagas",
+  "name": "SmartPlagasBot",
+  "pipeline_status": {
+    "current_stage": {
+      "id": "prod",
+      "promoted_on": "2025-08-30T03:52:21.451Z",
+      "promoted_by": "hectoraguiler@gmail.com"
+    }
+  }
+}
