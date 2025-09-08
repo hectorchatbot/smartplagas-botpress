@@ -1,11 +1,11 @@
-# Imagen estable de Botpress v12 (ajústala si usas otra)
-FROM botpress/server:v12_31_0
+FROM node:18-slim
 
-# Copiamos el contenido del bot (tu carpeta data local) al contenedor
-COPY ./data /botpress/data
+RUN npm i -g @botpress/cli@12
 
-# Puerto por defecto
+WORKDIR /app
+COPY ./data ./data
+
+ENV NODE_ENV=production
 EXPOSE 3000
 
-# Arranca Botpress
-CMD ["./bp"]
+CMD ["bash", "-lc", "bp start --port ${PORT:-3000} --host 0.0.0.0 --data-dir ./data --auto-migrate"]
