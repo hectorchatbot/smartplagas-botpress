@@ -1,17 +1,20 @@
-FROM node:18-slim
+# Usa el servidor oficial de Botpress v12
+FROM botpress/server:12
 
-# Botpress CLI (última estable)
-RUN npm i -g @botpress/cli
+# Carpeta de trabajo del servidor
+WORKDIR /botpress
 
-WORKDIR /app
+# Copia tu bot (flows, etc.) dentro de /botpress/data
 COPY ./data ./data
 
+# Recomendado en producción
 ENV NODE_ENV=production
+
+# Exposición informativa
 EXPOSE 3000
 
-# Arranque correcto con el CLI moderno:
-#  - serve (no start)
-#  - puerto dinámico de Railway
-#  - host 0.0.0.0
-#  - data-dir y auto-migrate
-CMD ["bash", "-lc", "bp serve --port ${PORT:-3000} --host 0.0.0.0 --dir ./data --auto-migrate"]
+# Ejecuta el binario del servidor y fuerza migraciones
+# - respeta el puerto inyectado por Railway
+# - escucha en 0.0.0.0
+# - usa tu carpeta ./data
+CMD ["bash", "-lc", "./bp start --port ${PORT:-3000} --host 0.0.0.0 --data-dir ./data --auto-migrate"]
