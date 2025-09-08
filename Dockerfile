@@ -18,3 +18,4 @@ EXPOSE 3000
 # - escucha en 0.0.0.0
 # - usa tu carpeta ./data
 CMD ["bash", "-lc", "./bp start --port ${PORT:-3000} --host 0.0.0.0 --data-dir ./data --auto-migrate"]
+
