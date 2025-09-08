@@ -1,5 +1,5 @@
 # Imagen oficial del server de Botpress v12
-FROM ghcr.io/botpress/server:v12
+FROM ghcr.io/botpress/server:v12.31.10
 
 # Carpeta de trabajo
 WORKDIR /botpress
