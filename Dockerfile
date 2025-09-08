@@ -1,5 +1,6 @@
 # Imagen pública en Docker Hub (no requiere autenticación)
 FROM botpress/server:latest
+# cache-bust: 2025-09-08-1
 
 # Carpeta de trabajo
 WORKDIR /botpress
