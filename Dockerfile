@@ -19,4 +19,5 @@ EXPOSE 3000
 # - escucha en 0.0.0.0
 # - usa la carpeta ./data como data-dir
 # - ejecuta migraciones al iniciar
-CMD ["bash", "-lc", "./bp start --port ${PORT:-3000} --host 0.0.0.0 --data-dir ./data --auto-migrate"]
+CMD ["bash", "-lc", "./bp start --port ${PORT:-3000} --host 0.0.0.0 --data-dir ./data"]
+
