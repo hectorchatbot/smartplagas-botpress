@@ -1,26 +1,19 @@
+# Usa la última imagen oficial de Botpress
 FROM botpress/server:latest
 
+# Carpeta de trabajo
 WORKDIR /botpress
 
-# Evitar cache y limpiar cualquier data vieja (permisos problemáticos)
-ARG CACHEBUST=1
-RUN rm -rf /botpress/data/* || true
+# No copiamos ./data, Railway lo manejará vacío en runtime
+# (Si necesitas flows o bots, súbelos luego dentro del admin de Botpress)
 
-# Garantizar permisos para el usuario botpress
-RUN mkdir -p /botpress/data \
-  && chown -R botpress:botpress /botpress \
-  && chmod -R u+rwX /botpress
-
-# ⚠️ Si NO tienes estas carpetas en tu repo, BORRA estas dos líneas.
-# ⚠️ Si las tienes, mantenlas con --chown para que no queden como root.
-# COPY --chown=botpress:botpress ./data/flows ./data/flows
-# COPY --chown=botpress:botpress ./data/global ./data/global
-
+# Configuración recomendada para producción
 ENV NODE_ENV=production
 
+# Railway ignora EXPOSE, pero lo dejamos informativo
 EXPOSE 3000
-USER botpress
 
-CMD ["bash","-lc","./bp start --port ${PORT:-3000} --host 0.0.0.0 --data-dir ./data"]
+# Comando de arranque: respeta el puerto de Railway y usa data-dir vacío
+CMD ["bash", "-lc", "./bp start --port ${PORT:-3000} --host 0.0.0.0 --data-dir ./data"]
 
 
