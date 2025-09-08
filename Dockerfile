@@ -1,20 +1,21 @@
-# Imagen pública en Docker Hub (no requiere autenticación)
+# Imagen pública de Botpress
 FROM botpress/server:latest
-
-# cache-bust 1
 
 # Carpeta de trabajo
 WORKDIR /botpress
 
-# Copia tus flows y contenido
-COPY ./data ./data
+# Copia solo tus flows (si tienes algo en /data/flows o /data/global)
+# ⚠️ IMPORTANTE: no copiar toda la carpeta data porque rompe los permisos
+COPY ./data/flows ./data/flows
+COPY ./data/global ./data/global
 
 # Recomendado en producción
 ENV NODE_ENV=production
 
-# Sólo informativo (Railway ignora EXPOSE)
+# Railway inyecta el puerto en $PORT
 EXPOSE 3000
 
-# Inicia Botpress respetando el puerto inyectado por Railway ($PORT)
-CMD ["bash","-lc","./bp start --auto-migrate --port ${PORT:-3000} --host 0.0.0.0 --data-dir ./data"]
+# Inicia Botpress respetando el puerto y usando la carpeta data
+CMD ["bash", "-lc", "./bp start --port ${PORT:-3000} --host 0.0.0.0 --data-dir ./data"]
+
 
