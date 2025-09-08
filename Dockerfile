@@ -1,23 +1,20 @@
-# Imagen oficial del servidor Botpress v12
-# (usa la etiqueta 'latest' para evitar "not found")
-FROM botpress/server:latest
+# Imagen oficial del server de Botpress v12
+FROM botpress/server:12
 
-# Carpeta de trabajo del servidor
+# Carpeta de trabajo
 WORKDIR /botpress
 
-# Copia tu bot (flows, contenidos, etc.) a la carpeta de datos
+# Copia tu bot (flows, content, etc.) dentro de /botpress/data
 COPY ./data ./data
 
-# Recomendado en producción
+# Opcional/recomendado en producción
 ENV NODE_ENV=production
 
-# Exponer el puerto (informativo)
+# Expón el puerto informativo (Railway ignora EXPOSE, pero ayuda a leer logs)
 EXPOSE 3000
 
-# Arranque del servidor y migraciones automáticas
-# - respeta el puerto que inyecta Railway (${PORT})
+# Inicia Botpress SIN migración automática
+# - respeta el puerto que inyecta Railway con $PORT
 # - escucha en 0.0.0.0
-# - usa la carpeta ./data como data-dir
-# - ejecuta migraciones al iniciar
+# - usa /botpress/data
 CMD ["bash", "-lc", "./bp start --port ${PORT:-3000} --host 0.0.0.0 --data-dir ./data"]
-
