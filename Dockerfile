@@ -1,17 +1,17 @@
-# Imagen oficial de Botpress v12 desde GHCR
-FROM ghcr.io/botpress/server:12.31.0
+# Imagen oficial de Botpress v12 (GitHub Container Registry)
+FROM ghcr.io/botpress/server:v12
 
-# Carpeta de trabajo
+# Carpeta de trabajo del server
 WORKDIR /botpress
 
-# Copia tus datos
+# Copia tu bot (flows, content, etc.) dentro de /botpress/data
 COPY ./data ./data
 
-# Producción
+# Recomendado en producción
 ENV NODE_ENV=production
 
-# Puerto
+# Puerto informativo (Railway ignora EXPOSE, pero ayuda a leer logs)
 EXPOSE 3000
 
-# Start Botpress
-CMD ["./bp", "start", "--port", "3000", "--host", "0.0.0.0", "--data-dir", "./data"]
+# Inicia Botpress (respeta $PORT de Railway, escucha en 0.0.0.0 y usa ./data)
+CMD ["bash","-lc","./bp start --port ${PORT:-3000} --host 0.0.0.0 --data-dir ./data"]
