@@ -1,21 +1,29 @@
-# Imagen pública de Botpress
+# Imagen oficial de Botpress
 FROM botpress/server:latest
 
 # Carpeta de trabajo
 WORKDIR /botpress
 
-# Copia solo tus flows (si tienes algo en /data/flows o /data/global)
-# ⚠️ IMPORTANTE: no copiar toda la carpeta data porque rompe los permisos
-COPY ./data/flows ./data/flows
-COPY ./data/global ./data/global
+# Crear carpeta de datos y asegurar permisos para el usuario 'botpress'
+RUN mkdir -p /botpress/data \
+  && chown -R botpress:botpress /botpress \
+  && chmod -R u+rwX /botpress
 
-# Recomendado en producción
+# (Opcional) Copia SOLO tus assets/flows si existen en el repo.
+# Ojo: usar --chown para que queden del usuario botpress.
+COPY --chown=botpress:botpress ./data/flows ./data/flows
+COPY --chown=botpress:botpress ./data/global ./data/global
+
+# Producción
 ENV NODE_ENV=production
 
-# Railway inyecta el puerto en $PORT
+# Railway inyecta $PORT
 EXPOSE 3000
 
-# Inicia Botpress respetando el puerto y usando la carpeta data
-CMD ["bash", "-lc", "./bp start --port ${PORT:-3000} --host 0.0.0.0 --data-dir ./data"]
+# Ejecutar como el usuario correcto
+USER botpress
+
+# Arranque
+CMD ["bash","-lc","./bp start --port ${PORT:-3000} --host 0.0.0.0 --data-dir ./data"]
 
 
