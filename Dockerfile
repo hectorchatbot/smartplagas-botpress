@@ -1,4 +1,4 @@
-FROM ghcr.io/botpress/server:v12
+FROM botpress/server:v12
 
 WORKDIR /botpress
 COPY ./data ./data
