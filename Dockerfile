@@ -16,4 +16,5 @@ ENV NODE_ENV=production
 EXPOSE 3000
 
 # Inicia Botpress respetando el puerto inyectado por Railway ($PORT)
-CMD ["bash", "-lc", "./bp start --port ${PORT:-3000} --host 0.0.0.0 --data-dir ./data"]
+CMD ["bash","-lc","./bp start --auto-migrate --port ${PORT:-3000} --host 0.0.0.0 --data-dir ./data"]
+
