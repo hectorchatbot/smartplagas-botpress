@@ -14,6 +14,7 @@ ENV NODE_ENV=production
 EXPOSE 3000
 
 # Comando de arranque: respeta el puerto de Railway y usa data-dir vacío
-CMD ["bash", "-lc", "./bp start --port ${PORT:-3000} --host 0.0.0.0 --data-dir ./data"]
+CMD ["bash", "-lc", "export BP_CONFIG_HTTPSERVER_HOST=0.0.0.0; export BP_CONFIG_HTTPSERVER_PORT=${PORT:-3000}; ./bp start --data-dir ./data"]
+
 
 
