@@ -1,6 +1,6 @@
 FROM node:18-slim
 
-RUN npm i -g @botpress/cli@12
+RUN npm i -g @botpress/cli
 
 WORKDIR /app
 COPY ./data ./data
