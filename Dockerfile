@@ -1,4 +1,5 @@
 FROM botpress/server:latest
 WORKDIR /botpress
+COPY . .
 ENV NODE_ENV=production
-CMD ["./bp", "start", "--port", "${PORT}", "--host", "0.0.0.0", "--data-dir", "./data"]
+CMD ["bash","-lc","./bp start --port ${PORT:-3000} --host 0.0.0.0"]
