@@ -5,5 +5,5 @@ node_modules/
 Dockerfile
 README.md
 
-# Agregado: ignora la carpeta data para que Botpress la cree solo
+# Ignora la carpeta data para que Botpress la cree solo en Railway
 data/
