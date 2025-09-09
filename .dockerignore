@@ -1,6 +1,9 @@
 .git
 .gitignore
-node_modules
+node_modules/
 *.log
 Dockerfile
 README.md
+
+# Agregado: ignora la carpeta data para que Botpress la cree solo
+data/
